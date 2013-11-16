@@ -4,8 +4,9 @@ define([
         "dojo/date/stamp",
         "dojo/date/locale",
         "dojo/topic",
-        "dojo/dom-class"
-        ],function(declare,lang,stamp,locale,topic,domClass){
+        "dojo/dom-class",
+        "dojo/has"
+        ],function(declare,lang,stamp,locale,topic,domClass,has){
 	
 	
 	var busyInd = null;
@@ -70,17 +71,12 @@ define([
         
         showLoading : function(){
         	
-        	if(!busyInd){
-        		busyInd = new WL.BusyIndicator('content', {text : 'Loading...'}); 
-        	}//end if
-        	busyInd.show();
+        	//TODO: implement loader show
         },
         
         hideLoading : function(){
-        	if(!busyInd){
-        		busyInd = new WL.BusyIndicator('content', {text : 'Loading...'}); 
-        	}//end if
-        	busyInd.hide();
+        	//TODO: implement loader hide
+        	
         },
         
         formatDate : function(isoString,includeTime){
@@ -134,31 +130,18 @@ define([
         
 		setHeadingLabel : function(label){
 	        this.view.parent.dapHeading.set("label",label);
-	        // The CSS class androidOnly used for this header should have taken care of this, will have to investigate
-	        // This is a temporary workaround
-	        if (window.device && (WL.Client.getEnvironment() == WL.Environment.ANDROID)) {
-	        	this.view.parent.dapAndroidHeading.set("label",label);
-	        } else {
-	        	 domClass.add(this.view.parent.dapAndroidHeading.domNode, "hide");
-	        	 // a part of the same temporary fix, no need to call it every time, could be in app.js
-	        	 // but a temp code anyway, so not polluting other files with this, so it will called many time unnecessarily
-	        	 domClass.add(this.view.parent.dapAndroidMenuButton.domNode, "hide");
-	        }
 	    },
 	     
 	    showBack : function(show){
 	    	 if(!show){
 	    		 domClass.add(this.view.parent.dapHeading.backButton.domNode, "hide");
-//	    		 domClass.add(this.view.parent.dapBackButton.domNode,"hide"); 
 	    	 }else{
 	    		 domClass.remove(this.view.parent.dapHeading.backButton.domNode, "hide");
-//	    		 domClass.remove(this.view.parent.dapBackButton.domNode,"hide"); 
 	    	 }//end if
 	    },
 	     
 	    setBackLabel : function(label){
    		 	this.view.parent.dapHeading.backButton.set("label",label);
-//	    	this.view.parent.dapBackButton.set("label",label); 
 	    },
 	    
 	    setBackTarget : function(target){

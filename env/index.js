@@ -93,10 +93,7 @@ EnvGenerator.prototype._createCommonapp = function createCommonapp(){
             cb(err);
         }else{
             //Copy index.html
-            var file = this.appRoot + "/" + this.appName;
-            var indexText = this.readFileAsString("_index.html");
-            indexText = indexText.replace("?TheHostname?",this.hostname);
-            this.write(file,indexText);
+            this.template("_index.html","www/index.html");
 
             //copy bootstrap file
             if(this.appType === "cordova"){
