@@ -122,6 +122,9 @@ module.exports = function(grunt) {
                         console.log("Error copying file",key);
                     }//end try
                 }//end for
+                dojoBuildDeps.dojoNls["dojo/nls/colors.js"] = true;
+                dojoBuildDeps.dojoNls["dojo/nls/dojo_ROOT.js"] = true;
+                dojoBuildDeps.dojoNls["dojo/nls/dojo_en.js"] = true;
                 for(var key in dojoBuildDeps.dojoNls){
                     try{
                         grunt.file.copy("../DojoExpress/build/release/" + key,"./www/" + key);
@@ -145,7 +148,7 @@ module.exports = function(grunt) {
        if(keepSrcPackage){
             suffix = "_built";
        }//end if
-       console.log("Packagename",packageName);
+       //console.log("Packagename",packageName);
        grunt.file.expandMapping([
            "*.*",
            "**/*.*",
