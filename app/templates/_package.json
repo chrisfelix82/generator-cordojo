@@ -1,0 +1,11 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "dependencies": {
+    "grunt-contrib-watch": "~0.5.3",
+    "cordova": "~3.1.0-0.2.0",
+    "fs-extra": "~0.6.3",
+    "http-proxy": "~0.10.3"
+  },
+  "devDependencies": {}
+}
