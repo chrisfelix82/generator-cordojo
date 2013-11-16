@@ -34,7 +34,7 @@ define([
 				
 				var F = MODULE + ":beforeActivate:";
 		 		console.debug(F,"Enter");
-		 	
+		 		this.setHeadingLabel(this.view.nls.title);
 		 		console.debug(F,"Exit");
 			},
 			
