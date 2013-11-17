@@ -115,6 +115,12 @@ If you would like the same auto-refresh available on the ios simulator and physi
 <content src="http://<hostname>:8000/ios/www/index.html" />
 ```
 
+Let's stub out the ios environment as well
+
+```
+$ yo cordojo:env ios
+```
+
 Now run the emulator to test the auto-refresh.  Again you may need to run with sudo.
 
 ```
@@ -128,13 +134,21 @@ Now do a dojo build and inspect the build-report.txt file.  You will see that a 
 $ grunt dojo-build
 ```
 
-Finally you can copy over the built packages, so that the app can run outside of dev mode.
+You can copy over the built packages, so that the app can run outside of dev mode.
 
 ```
 $ grunt copy-files
 ```
 
+You will see that packages were added called commonapp_built and iosapp_built.  If you would like to switch to the built version, rename these directories by removing _built from them.  Of course, if you are doing this during dev, you would want to name the existing commonapp etc. to something like commonapp_dev.
 
+If you would like to stub out additional views, use:
+
+```
+$ yo cordojo:view newViewName
+```
+
+You will notice that config.json is also updated automatically.  Have fun coding!
 
 ### Getting To Know Yeoman
 
