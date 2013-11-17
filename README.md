@@ -98,6 +98,42 @@ Now we will start up the DojoExpress server, as it will serve the source package
 $ grunt start-dojo-express
 ```
 
+To test that the server is running.  Go to http://localhost:3434 and you should see "Hello World!"
+
+Now we will start the amazing development server.  I say amazing because it will eliminate the need to refresh the browser or restart a devive or simulator when making source code changes. Also, it will monitor http requests, and automatically edit the mobile.profile.js dojo build file.
+
+```
+$ grunt dev-serve
+```
+
+Now go to http://localhost:8000/ios/www/index.html, and now you will see the SampleView displayed.  Now make a change to the commonapp/sample/SampleView.html file, and you should see the change reflected in the browser without manual refresh needed.
+NOTE: If you do not see the auto-refresh occuring, it may be because the hostname you provided earlier is inaccessible for some reason.  You could try changing it to localhost in www/index.html and manually refresh the page once to see future changes reflected automatically - hopefully :)
+
+If you would like the same auto-refresh available on the ios simulator and physical device, then change the following in www/config.xml:
+
+```
+<content src="http://<hostname>:8000/ios/www/index.html" />
+```
+
+Now run the emulator to test the auto-refresh.  Again you may need to run with sudo.
+
+```
+$ cordova emulate
+```
+
+Now here comes the cool part.  Check out DojoExpress/build/mobile.profile.js.  You will see that it has been updated automatically!
+Now do a dojo build and inspect the build-report.txt file.  You will see that a layr per view has been created and that it is optimal:
+
+```
+$ grunt dojo-build
+```
+
+Finally you can copy over the built packages, so that the app can run outside of dev mode.
+
+```
+$ grunt copy-files
+```
+
 
 
 ### Getting To Know Yeoman
