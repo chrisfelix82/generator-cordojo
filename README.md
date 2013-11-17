@@ -46,18 +46,59 @@ Now that you have installed Mr. cordojo, you may be wondering what he can do for
 
 ### Steps
 
-1. Create a new cordova project with the usual command.
+Create a new cordova project with the usual command.
 
 ```
 $ cordova create MobileProject
 $ cd MobileProject
 ```
 
-2. Next add a platform. In our case we add ios
+Next add a platform. In our case we add ios
 
 ```
 $ cordova platform add ios
 ```
+
+Now let's test that the app runs in Chrome for instance.  You may have to run these commands with sudo.  Go to http://localhost:8000/ios/www/index.html and you should see the default index.html.
+
+```
+$ cordova build
+$ cordova serve
+```
+
+So far nothing new.  If you're like me though, you will find it a pain to have to issue cordova prepare each time you make a change in order to test on the browser. Not to mention I am lazy and hate to have to click the refresh button each time.  Also to add to my frustrations, I have to do a cordova build each time I want to test changes on a device or simulator.  OK I have complained enough, now time to solve all of these issues!
+
+```
+$ yo cordojo
+```
+
+If you are using Eclipse, you will have to refresh the workspace as files are added in the background.  Also, you will need to create a general project called DojoExpress.  This is because Eclipse is dumb and will not pick up projects added to the workspace automatically.  After that do the following:
+
+```
+$ cd ../DojoExpress
+$ npm install
+$ bower install
+```
+
+Refresh the DojoExpress project if using Eclipse.  You will now see that there is a bower_components folder that contains packages defined in bower.json.  You will have to add dojox/app to the dojox folder.  Unfortunately it appears that that folder is empty by default.  You should be able to get a copy from http://dojotoolkit.org/ (I know this is a pain)
+After you have added dojox/app.  Do the following to stub out the commonapp directory.  This will be a dojo custom package where you will place all of your app's common code across environments.  As such, it will be placed in the www folder.
+
+```
+$ cd ../MobileProject
+$ yo cordojo:env common
+```
+
+Explore the commonapp custom package.  You will see that it is a simple dojox/app with one template and one view.  See commonapp/config.json for details.
+Also, while you are at it, explore DojoExpress.  DojoExpress is a Node.js based Express server that bootstraps Dojo.  This means that you can finally write the exact same code on the front end and the backend!  DojoExpress is pulled in from https://github.com/chrisfelix82/dojoexpress
+You should also open DojoExpress/build/mobile.profile.js.  You may be thinking, OK so it is a Dojo build profile, I though you said I didn't have to deal with one of these anymore?  Well that's right you don't, but if you would like to tweak it, you can.  In a few steps, you will see that it gets updated automatically.  Be patient :)
+
+Now we will start up the DojoExpress server, as it will serve the source packages found under bower_components while we develop.  This will help us to debug any javascript code, whether that is our own, or one of the libraries (e.g. dojox).  The server is started by default on port 3434.  Change it in DojoExpress/backend/server.js if you need to.
+
+```
+$ grunt start-dojo-express
+```
+
+
 
 ### Getting To Know Yeoman
 
