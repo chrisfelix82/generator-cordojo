@@ -29,13 +29,38 @@ To install generator-cordojo from npm, run:
 $ npm install -g generator-cordojo
 ```
 
-Finally, initiate the generator:
+To install cordova cli, run:
 
 ```
-$ yo cordojo
+$ npm install -g cordova
+```
+
+### What is it?
+Now that you have installed Mr. cordojo, you may be wondering what he can do for you.  cordojo is a friend if you would like to do the following:
+
+1. Create a cordova project based on dojox/app
+
+2. Use Node.js as an option for your backend
+
+3. Rapidly develop and test code with automatic build optimization - forget hand crafting dojo build profiles!
+
+### Steps
+
+1. Create a new cordova project with the usual command.
+
+```
+$ cordova create MobileProject
+$ cd MobileProject
+```
+
+2. Next add a platform. In our case we add ios
+
+```
+$ cordova platform add ios
 ```
 
 ### Getting To Know Yeoman
+
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
